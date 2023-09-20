@@ -179,26 +179,31 @@ It's located at [registry.terraform.io](https://registry.terraform.io/)
 ### Terraform Console
 We can see a list of all the Terraform commands by typing `terraform`.
 
-### Terraform Init
+#### Terraform Init
 Providers are implemented as plugins in Terraform. Terraform automatically downloads and installs the necessary provider plugins when you initialize a Terraform project using the `terraform init` command.
 
 
-### Terraform Plan 
+#### Terraform Plan 
 The `terraform plan` command in Terraform is used to preview the changes that will be made to your infrastructure when you apply your Terraform configuration. 
 - It provides valuable information about what Terraform intends to do without actually making any changes to the infrastructure. 
 
-### Terraform Apply
+#### Terraform Apply
 Once you review the plan and are satisfied with the proposed changes, you can use the `terraform apply` command to apply those changes and make them effective in your infrastructure.
 
 - Apply should prompt "yes" or "no"
 - To automatically approve changes, apply the auto approve flag eg. `terraform apply --auto-approve`
 
-### Terraform Lock Files
+#### Terraform Destroy
+The `terraform destroy` command in Terraform is used to destroy (delete) all the resources and infrastructure that were created and managed by a Terraform configuration. 
+- It essentially tears down the entire infrastructure that was provisioned using the terraform apply command, reverting the environment to its original state or to a state defined by the Terraform configuration.
+- You can also use the auto apply flag to skip the prompt eg. `terraform destroy --auto-approve`
+
+#### Terraform Lock Files
 `.terraform.lock.hcl` contains the locked versioning for the providers or modules that should be used with this project.
 
 The Terraform Lock File **should be committed** to your Version Control System (VCS) eg. GitHub
 
-### Terraform State Files
+#### Terraform State Files
 `.terraform.tfstate` contains information about the current state of your infrastructure.
 
 - This file **should not be committed** to your VCS. This file can contain sensitive data.
