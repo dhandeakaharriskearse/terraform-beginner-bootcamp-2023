@@ -160,3 +160,53 @@ If it is successful you should see a json payload return that looks like this:
 ```
 
 We'll need to generate AWS CLI credentials from IAM User in order to use the AWS CLI
+
+## Terraform Basics
+
+### Terraform Registry
+Terraform sources their providers and modules from the Terraform registry.
+It's located at [registry.terraform.io](https://registry.terraform.io/)
+
+- **Providers** are plugins or extensions that allow Terraform to interact with various cloud providers, infrastructure platforms, and services. 
+    - They serve as the bridge between your Terraform configuration and the APIs of the target infrastructure or service you want to manage.
+
+    [Random Terraform Provider](https://registry.terraform.io/providers/hashicorp/random)
+
+- **Modules** are a way to organize, encapsulate, and reuse sections of Terraform configurations. 
+    - They allow you to break down your infrastructure code into smaller, manageable units, making it easier to maintain and reuse code across different projects or environments.
+    - Modules are especially helpful when working on complex infrastructure setups or when collaborating with others on Terraform projects.
+
+### Terraform Console
+We can see a list of all the Terraform commands by typing `terraform`.
+
+### Terraform Init
+Providers are implemented as plugins in Terraform. Terraform automatically downloads and installs the necessary provider plugins when you initialize a Terraform project using the `terraform init` command.
+
+
+### Terraform Plan 
+The `terraform plan` command in Terraform is used to preview the changes that will be made to your infrastructure when you apply your Terraform configuration. 
+- It provides valuable information about what Terraform intends to do without actually making any changes to the infrastructure. 
+
+### Terraform Apply
+Once you review the plan and are satisfied with the proposed changes, you can use the `terraform apply` command to apply those changes and make them effective in your infrastructure.
+
+- Apply should prompt "yes" or "no"
+- To automatically approve changes, apply the auto approve flag eg. `terraform apply --auto-approve`
+
+### Terraform Lock Files
+`.terraform.lock.hcl` contains the locked versioning for the providers or modules that should be used with this project.
+
+The Terraform Lock File **should be committed** to your Version Control System (VCS) eg. GitHub
+
+### Terraform State Files
+`.terraform.tfstate` contains information about the current state of your infrastructure.
+
+- This file **should not be committed** to your VCS. This file can contain sensitive data.
+- If you lose this file, you lose knowing the state of your infrastructure.
+
+`.terraform.tfstate.backup` is the previous file state.
+
+### Terraform Directory
+`.terraform` contains binaries of terraform providers.
+
+
