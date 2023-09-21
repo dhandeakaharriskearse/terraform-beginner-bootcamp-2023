@@ -215,3 +215,28 @@ The Terraform Lock File **should be committed** to your Version Control System (
 `.terraform` contains binaries of terraform providers.
 
 
+## Issues with Terraform Cloud Login and GitPod Workspace
+While following along with the Week O project prep, I attempted to run the `terraform login` command. It launched a wiswig view to generate a token. However, it doesn't work as expected in Gitpod VSCode in the browser.
+
+The workaround it to manually generate a token in Terraform Cloud
+
+```
+https://app.terraform.io/app/settings/tokens?source=terraform-login
+```
+Then create and open the file manually here:
+
+```sh
+touch /home/gitpod/.terraform.d/credentials.tfrc.json
+open /home/gitpod/.terraform.d/credentials.tfrc.json
+```
+Provide the following code (replace your token in the file):
+
+```json
+{
+  "credentials": {
+    "app.terraform.io": {
+      "token": "YOUR_TERRAFORM_CLOUD_API_TOKEN"
+    }
+  }
+}
+```
