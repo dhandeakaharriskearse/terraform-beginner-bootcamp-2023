@@ -1,5 +1,34 @@
 # Terraform Beginner Bootcamp 2023
 
+## Table of Contents 
+
+- [Semantic Versioning](#semantic-versioning)
+- [Install the Terraform CLI](#install-the-terraform-cli)
+  - [Considerations with the Terraform CLI changes](#considerations-with-the-terraform-cli-changes)
+  - [Considerations for Linux Distribution](#considerations-for-linux-distribution)
+  - [Refactoring into Bash Scripts](#refactoring-into-bash-scripts)
+	- [Shebang Considerations](#shebang-considerations)
+		- [Execution Considerations](#execution-considerations)
+		- [Linux Permissions Considerations](#linux-permissions-considerations)
+  - [Github Lifecycle (Before, Init, Command)](#github-lifecycle-before-init-command)
+	- [Working with Env Vars](#working-with-env-vars)
+		- [Setting and Unsetting Env Vars](#setting-and-unsetting-env-vars)
+		- [Printing Env Vars](#printing-env-vars)
+		- [Scoping of Env Vars](#scoping-of-env-vars)
+		- [Persisting Env Vars in Gitpod](#persisting-env-vars-in-gitpod)
+- [AWS CLI Installation](#aws-cli-installation)
+- [Terraform Basics](#terraform-basics)
+	- [Terraform Registry](#terraform-registry)
+	- [Terraform Console](#terraform-console)
+		- [Terraform Init](#terraform-init)
+		- [Terraform Plan](#terraform-plan)
+		- [Terraform Apply](#terraform-apply)
+		- [Terraform Destroy](#terraform-destroy)
+		- [Terraform Lock Files](#terraform-lock-files)
+		- [Terraform State Files](#terraform-state-files)
+		- [Terraform Directory](#terraform-directory)
+- [Issues with Terraform Cloud Login and GitPod Workspace](#issues-with-terraform-cloud-login-and-gitpod-workspace)
+
 ## Semantic Versioning 
 
 This project is going to utilize semantic versioning for its tagging
@@ -137,7 +166,7 @@ All future workspaces launched will set the env env vars for all bash terminals 
 
 You can also set env vars in the `.gitpod.yml` but this can only contain non-sensitive env vars. 
 
-### AWS CLI Installation
+## AWS CLI Installation
 AWS CLI is installed for the project via the bash script [`./bin/install_aws_cli`](./bin/install_aws_cli)
 
 [Getting Started Install (AWS CLI)](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
@@ -211,7 +240,7 @@ The Terraform Lock File **should be committed** to your Version Control System (
 
 `.terraform.tfstate.backup` is the previous file state.
 
-### Terraform Directory
+#### Terraform Directory
 `.terraform` contains binaries of terraform providers.
 
 
