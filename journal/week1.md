@@ -71,7 +71,8 @@ This is the default file to load in terraform variables in bulk
 - TODO: document this functionality for terraform cloud
 
 #### order of terraform variables
-- TODO: document which terraform variables take precedence
+![tf_variable_precedence](https://github.com/dhandeakaharriskearse/terraform-beginner-bootcamp-2023/assets/110075236/06280431-3ae6-4339-8bbc-e849cfb1e37c)
+- credit to Tanushree Aggarwal for this graphic representation
 
 ## Dealing with Configuration Drift
 
