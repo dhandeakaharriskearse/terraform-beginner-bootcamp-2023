@@ -271,3 +271,17 @@ resource "aws_instance" "web" {
 
 ```
 [remote-exec](https://developer.hashicorp.com/terraform/language/resources/provisioners/remote-exec)
+
+## For Each Expressions
+
+For expressions can be used when iterating over a data type
+[for Expressions](https://developer.hashicorp.com/terraform/language/expressions/for)
+
+For each allows us to enumerate over complex data types
+```sh
+[for s in var.list : upper(s)]
+```
+This is mostly useful when creating multiples of a cloud resource and you want to reduce the amount of repetitive terraform code.
+
+"for_each is a meta-argument defined by the Terraform language. The for_each meta-argument accepts a map or a set of strings, and creates an instance for each item in that map or set. Each instance has a distinct infrastructure object associated with it, and each is separately created, updated, or destroyed when the configuration is applied."
+[The for_each Meta-Argument](https://developer.hashicorp.com/terraform/language/meta-arguments/for_each)
