@@ -62,7 +62,14 @@ bundle exec ruby server.rb
 
 All of the code for our server is stored in the `server.rb` file.
 
-## CRUD
+## How to write Go code
+
+[GoLang Documentation](https://go.dev/doc/code)
+
+## Writing Custom Terraform Providers
+[Custom TF Providers](https://www.hashicorp.com/blog/writing-custom-terraform-providers)
+
+### CRUD
 
 Terraform Provider resources utilize CRUD.
 
