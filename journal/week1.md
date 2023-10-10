@@ -1,5 +1,40 @@
 # Terraform Beginner Bootcamp 2023 - Week 1
 
+- [Terraform Beginner Bootcamp 2023 - Week 1](#terraform-beginner-bootcamp-2023---week-1)
+  * [Fixing Tags](#fixing-tags)
+  * [Root Module Structure](#root-module-structure)
+  * [Terraform Variables](#terraform-variables)
+    + [Terraform Cloud Variables](#terraform-cloud-variables)
+    + [Loading Terraform Input Variables](#loading-terraform-input-variables)
+      - [var flag](#var-flag)
+      - [var-file flag](#var-file-flag)
+      - [terraform.tfvars](#terraformtfvars)
+      - [auto.tfvars](#autotfvars)
+      - [order of terraform variables](#order-of-terraform-variables)
+  * [Dealing with Configuration Drift](#dealing-with-configuration-drift)
+    + [What happens if you lose your state file?](#what-happens-if-you-lose-your-state-file-)
+    + [Fix Missing Resources with Terraform Import](#fix-missing-resources-with-terraform-import)
+    + [Fix Manual Configuration](#fix-manual-configuration)
+    + [Fix jusing Terraform Refresh](#fix-jusing-terraform-refresh)
+  * [Terraform Modules](#terraform-modules)
+    + [Terraform Module Structure](#terraform-module-structure)
+    + [Passing Input Variables](#passing-input-variables)
+    + [Module Sources](#module-sources)
+  * [Considerations when using ChatGPT to write Terraform](#considerations-when-using-chatgpt-to-write-terraform)
+  * [Working with files in Terraform](#working-with-files-in-terraform)
+    + [fileexists function](#fileexists-function)
+    + [filemd5 function](#filemd5-function)
+    + [Path Variable](#path-variable)
+    + [Terraform locals](#terraform-locals)
+    + [Terraform Data Sources](#terraform-data-sources)
+  * [Working with JSON](#working-with-json)
+    + [Changing the Lifecycle of Resources](#changing-the-lifecycle-of-resources)
+  * [Terraform Data](#terraform-data)
+  * [Provisioners](#provisioners)
+    + [local-exec](#local-exec)
+    + [remote-exec](#remote-exec)
+  * [For Each Expressions](#for-each-expressions)
+
 ## Fixing Tags
 
 [How To Delete Local and Remote Tags on Git](https://devconnected.com/how-to-delete-local-and-remote-tags-on-git/)
@@ -56,21 +91,52 @@ Terraform variables can be set to sensitive so they're not shown visibly in th U
 
 #### var flag
 
-We can use the `-var` tag to input a variable or override a variable in the .tfvars file eg. `terraform -var user_uuid="my-user-uuid"`
+We can use the `-var` tag to input a variable or override a variable in the .tfvars file eg. 
+```sh
+terraform -var user_uuid="my-user-uuid"
+```
 
 #### var-file flag
 
-- TODO: document this flag
+To set lots of variables, it is more convenient to specify their values in a variable definitions file (with a filename ending in either .tfvars or .tfvars.json) and then specify that file on the command line with `-var-file` tag.
+```sh
+terraform apply -var-file="testing.tfvars"
+```
 
 #### terraform.tfvars
 
-This is the default file to load in terraform variables in bulk
+`terraform.tfvars` is a file used in Terraform to store variable values that you want to use in your Terraform configurations. 
+This file is particularly useful when you're working with Terraform Cloud or Terraform Enterprise, as it allows you to separate sensitive or environment-specific data from your main Terraform code.
+
+You can use `terraform.tfvars` to configure your Terraform projects for deploying infrastructure in these technologies in a more organized and secure manner.
 
 #### auto.tfvars
 
-- TODO: document this functionality for terraform cloud
+If you create a file named `auto.tfvars` in your Terraform Cloud workspace, you can define variable values in this file, and Terraform will automatically use them when you run your infrastructure provisioning or update commands within that workspace.
+
+The "auto" part means that Terraform will automatically load variable values from these files without requiring explicit flags or command-line options.
+
+```tf
+# auto.tfvars
+
+my_variable = "my_value"
+another_variable = 42
+
+```
 
 #### order of terraform variables
+
+Terraform uses a specific order of precedence when determining the value of a variable. If the same variable is assigned multiple values, Terraform will use the value of highest precedence, overriding any other values. 
+
+Terraform loads variables in the following order, with later sources taking precedence over earlier ones:
+
+ 1. Environment variables (TF_VAR_variable_name)
+ 2. The terraform.tfvars file
+ 3. The terraform.tfvars.json file
+ 4. Any .auto.tfvars or .auto.tfvars.json files, processed in lexical order of their filenames.
+ 5. Any -var and -var-file options on the command line, in the order they are provided.
+ 6. Variable defaults
+
 ![tf_variable_precedence](https://github.com/dhandeakaharriskearse/terraform-beginner-bootcamp-2023/assets/110075236/06280431-3ae6-4339-8bbc-e849cfb1e37c)
 - credit to Tanushree Aggarwal for this graphic representation
 
