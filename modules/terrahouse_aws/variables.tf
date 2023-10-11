@@ -1,11 +1,19 @@
-variable "user_uuid" {
+variable "teacherseat_user_uuid" {
   description = "The UUID of the user"
  type = string
  
  validation {
-   condition = can(regex("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", var.user_uuid))
+   condition = can(regex("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", var.teacherseat_user_uuid))
    error_message = "The user_uuid is not a valid UUID"
  }
+}
+
+variable "terratowns_endpoint" {
+  type = string
+}
+
+variable "terratowns_access_token" {
+  type = string
 }
 
 variable "bucket_name" {
