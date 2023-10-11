@@ -8,7 +8,9 @@
       - [Sinatra](#sinatra)
   * [Terratowns Mock Server](#terratowns-mock-server)
     + [Running the web server](#running-the-web-server)
-  * [CRUD](#crud)
+  * [How to write Go code](#how-to-write-go-code)
+  * [Writing Custom Terraform Providers](#writing-custom-terraform-providers)
+    + [CRUD](#crud)
 
 ## Working with Ruby
 
