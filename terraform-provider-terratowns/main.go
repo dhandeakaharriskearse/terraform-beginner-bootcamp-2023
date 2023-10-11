@@ -126,7 +126,7 @@ func Resource() *schema.Resource {
 			},
 		},
 	}
-	log.Print("Resource:start")
+	log.Print("Resource:end")
 	return resource
 }
 
