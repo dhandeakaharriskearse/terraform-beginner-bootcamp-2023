@@ -22,7 +22,7 @@ required_providers {
 }
 
 provider "terratowns" {
-  endpoint = "http://localhost:4567"
+  endpoint = "http://localhost:4567/api"
   user_uuid="e328f4ab-b99f-421c-84c9-4ccea042c7d1" 
   token="9b49b3fb-b8e9-483c-b703-97ba88eef8e0"
 }
@@ -36,3 +36,15 @@ provider "terratowns" {
 #   content_version = var.content_version
 #   assets_path = var.assets_path
 # }
+
+resource "terratowns_home" "home"{
+  name = "A bomb recipe for rum cake!"
+  description = <<DESCRIPTION
+  This is a recipe I got from a friend's Grandmother. Don't tell her I'm giving this to you!
+DESCRIPTION
+  #domain_name = module.terrahous_aws.cloudfront_url
+  domain_name = "3fh59gz.cloudfront.net"
+  town = "cooker-cove"
+  content_version = 1
+}
+

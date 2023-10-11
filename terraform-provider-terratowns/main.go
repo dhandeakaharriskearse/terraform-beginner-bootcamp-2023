@@ -117,7 +117,7 @@ func Resource() *schema.Resource {
 			"town": {
 				Type: schema.TypeString,
 				Required: true,
-				Description: "The town to which the home will belong to",
+				Description: "The town to which the home will belong",
 			},
 			"content_version": {
 				Type: schema.TypeInt,
