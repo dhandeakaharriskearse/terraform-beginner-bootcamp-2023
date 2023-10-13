@@ -61,4 +61,5 @@ DESCRIPTION
   domain_name = module.home_baja_blast_hosting.domain_name
   town = "missingo"
   content_version = var.baja_blast.content_version
+
 }
