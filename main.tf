@@ -27,48 +27,39 @@ provider "terratowns" {
   token= var.terratowns_access_token
 }
 
-module "terrahouse_aws" {
-  source = "./modules/terrahouse_aws"
+module "home_rum_cake_hosting" {
+  source = "./modules/terrahome_aws"
   teacherseat_user_uuid = var.teacherseat_user_uuid
-  terratowns_access_token = var.terratowns_access_token
-  terratowns_endpoint = var.terratowns_endpoint
-  bucket_name = var.bucket_name
-  index_html_filepath = var.index_html_filepath
-  error_html_filepath = var.error_html_filepath
-  content_version = var.content_version
-  assets_path = var.assets_path
+  public_path = var.rum_cake.public_path
+  content_version = var.rum_cake.content_version
 }
 
-resource "terratowns_home" "home"{
+resource "terratowns_home" "rum_cake"{
   name = "A bomb recipe for rum cake!"
   description = <<DESCRIPTION
   This is a recipe I got from a friend's Grandmother. Don't tell her I'm giving this to you!
 DESCRIPTION
-  domain_name = module.terrahouse_aws.cloudfront_url
+  domain_name = module.home_rum_cake_hosting.domain_name
   town = "missingo"
-  content_version = 1
+  content_version = var.rum_cake.content_version
 }
 
-module "terrahouse_aws" {
-  source = "./modules/terrahouse_aws"
+module "home_baja_blast_hosting" {
+  source = "./modules/terrahome_aws"
   teacherseat_user_uuid = var.teacherseat_user_uuid
-  terratowns_access_token = var.terratowns_access_token
-  terratowns_endpoint = var.terratowns_endpoint
-  bucket_name = var.bucket_name
-  index_html_filepath = var.index_html_filepath
-  error_html_filepath = var.error_html_filepath
-  content_version = var.content_version
-  assets_path = var.assets_path
+  public_path = var.baja_blast.public_path
+  content_version = var.baja_blast.content_version
 }
 
-resource "terratowns_home" "home"{
+resource "terratowns_home" "baja_blast"{
   name = "Make Your Own Baja Blast"
   description = <<DESCRIPTION
   The Taco Bell Cartel has a stranglehold on the heavenly nectar that is Mountain Dew Baja Blast.
 After lots of trial and error and much frustration I've discovered the recipe. And,
 it's easier than you think.
 DESCRIPTION
-  domain_name = module.terrahouse_aws.cloudfront_url
+  domain_name = module.home_baja_blast_hosting.domain_name
   town = "missingo"
-  content_version = 1
+  content_version = var.baja_blast.content_version
+
 }
