@@ -59,7 +59,7 @@ After lots of trial and error and much frustration I've discovered the recipe. A
 it's easier than you think.
 DESCRIPTION
   domain_name = module.home_baja_blast_hosting.domain_name
-  town = "missingo"
+  town = "cooker-cove"
   content_version = var.baja_blast.content_version
 
 }
